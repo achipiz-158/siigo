@@ -1,9 +1,19 @@
 from django.shortcuts import render
 from tablib import Dataset
+from django.http import HttpResponse
+from .resource import ProductResource
+
+
+def export(request):
+    person_resource = ProductResource()
+    dataset = person_resource.export()
+    response = HttpResponse(dataset.xls, content_type='application/vnd.ms-excel')
+    response['Content-Disposition'] = 'attachment; filename="import/products.xls"'
+    return response
 
 
 def importar(request):
-    # template = loader.get_template('export/import.html')
+    # template = loader.get_template('import.html')
     if request.method == 'POST':
         product_resource = ProductResource()
         dataset = Dataset()
@@ -16,4 +26,4 @@ def importar(request):
         # print(result.has_errors())
         if not result.has_errors():
             product_resource.import_data(dataset, dry_run=False)  # Importando ahora
-    return render(request, 'export/import.html')
+    return render(request, 'import.html')

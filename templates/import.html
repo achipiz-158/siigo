@@ -1,6 +1,8 @@
  {% extends 'index.html' %}
 
  {% block content %}
+ <br>
+ <hr><br>
   <form method="post" enctype="multipart/form-data">
    {% csrf_token %}
    <input type="file" name="xlsfile">
