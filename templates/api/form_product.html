@@ -1,0 +1,50 @@
+{% extends "index.html" %}
+{% load static from staticfiles%}
+{% block content %}
+<div class="modal-dialog modal-lg">
+    <div class="modal-content">
+        {% if object %}
+        <form role="form" action="{% url 'product_edit' object.pk %}" method="post">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">X</button>
+                <h3>Modificar Producto</h3>
+            </div>
+        {% else %}
+        <form role="form" action="{% url 'product_create' %}" method="post">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">X</button>
+                <h3>Crear Producto</h3>
+            </div>
+        {% endif %}
+            <div class="modal-body">
+                {% csrf_token %}
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        {{ form.as_p }}
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="col-lg-12 text-right">
+                    <input type="submit" id="load" class="btn btn primary" name="submit" value="Guardar">
+                    <button type="button" class="btn btn-default" onclick="return cerrar_modal()">Cancelar</button>
+                </div>
+            </div>
+        </form>
+        </form>
+    </div>
+</div>
+{% endblock %}
+
+
+{% block js %}
+	<script>
+		$(document).ready(function() {
+			$('#load').click(function) {
+			$("#contenido").load("list_product.html");
+			});
+		});
+	</script>
+{% endblock %}
+
+

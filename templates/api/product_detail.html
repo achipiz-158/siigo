@@ -1,0 +1,32 @@
+{% extends "index.html" %}
+{% load static from staticfiles%}
+{% block content %}
+<div class="modal-dialog modal-lg">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">X</button>
+            <h3>Detalle Product</h3>
+        </div>
+        <div class="modal-body">
+
+            <div class="row">
+                <div class="col-lg-4">
+                    <label>Nombre:</label>
+                    <p>{{ object.name }}</p>
+                    <label>DIrección:</label>
+                    <p>{{ object.description }}</p>
+                    <label>Telefono:</label>
+                    <p>{{ object.list_prince }}</p>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <div class="col-lg-12 text-right">
+                <button type="button" class="btn btn-default" onclick="return cerrar_modal()">
+                    Aceptar
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

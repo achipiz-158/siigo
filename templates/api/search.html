@@ -1,0 +1,19 @@
+ {% extends 'index.html' %}
+{% load static from staticfiles%}
+ {% block content %}
+    <div class="ui-widget">
+      <label for="search"> Busqueda </label>
+      <input id="search">
+    </div>
+ {% endblock %}
+
+ {% block js %}
+    <script type="text/javascript">
+        $(function() {
+          $("#search").autocomplete({
+            source: "{% url 'ajax_load_product' %}",
+            minLength: 1,
+          });
+        });
+    </script>
+ {% endblock %}
