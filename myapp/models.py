@@ -5,10 +5,16 @@ from django.conf import settings
 class Tenant(models.Model):
     name = models.CharField(max_length=100)
 
+    def __str__(self):
+        return self.name
+
 
 class Customer(models.Model):
     first_name = models.CharField(max_length=100)
     last_name = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.first_name
 
 
 class Product(models.Model):
@@ -16,6 +22,9 @@ class Product(models.Model):
     description = models.TextField()
     list_prince = models.FloatField()
     id_tenant = models.ForeignKey(Tenant, on_delete=models.PROTECT)
+
+    def __str__(self):
+        return self.name
 
 
 class InvoiceItem(models.Model):

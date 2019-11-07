@@ -5,3 +5,4 @@ from .models import Product
 class ProductResource(resources.ModelResource):
     class Meta:
         model = Product
+        fields = ('id', 'name', 'decription', 'list_prince', 'id_tenant')

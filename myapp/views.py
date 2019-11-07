@@ -5,10 +5,10 @@ from .resource import ProductResource
 
 
 def export(request):
-    person_resource = ProductResource()
-    dataset = person_resource.export()
-    response = HttpResponse(dataset.xls, content_type='application/vnd.ms-excel')
-    response['Content-Disposition'] = 'attachment; filename="import/products.xls"'
+    product_resource = ProductResource()
+    dataset = product_resource.export()
+    response = HttpResponse(dataset.csv, content_type='text/csv')
+    response['Content-Disposition'] = 'attachment; filename="products.csv"'
     return response
 
 
